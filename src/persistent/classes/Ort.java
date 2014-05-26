@@ -1,5 +1,7 @@
 package persistent.classes;
 
+import Interfaces.OrtInterface;
+
 public class Ort {
 	private int OrtId;
 	private String OrtName;

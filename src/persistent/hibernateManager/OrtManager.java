@@ -7,21 +7,23 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import Interfaces.OrtInterface;
 import persistent.classes.Ort;
 /**
  * 
  * @author mirko
  *
  */
-public class OrtManager {
-	Session session;
+public class OrtManager extends PersistentManager 
+implements OrtInterface  {
+	
 	
 	/**
 	 * Constructor. Create a OrtManager
 	 * @param session
 	 */
 	public OrtManager(Session session){
-		this.session = session;
+		super(session);
 	}
 	
 	/**
@@ -69,7 +71,7 @@ public class OrtManager {
 	public List<Ort> findOrtByName(String ortName){
 		List<Ort> lo = new ArrayList<Ort>();
 		session.beginTransaction();
-		String toSearch = "%" + ortName + "%";
+		String toSearch = ortName + "%";
 		try {
 			Criteria crit = session.createCriteria(Ort.class);
 			crit.add(Restrictions.ilike("OrtName", toSearch));
@@ -77,7 +79,7 @@ public class OrtManager {
 		} catch (Exception e){
 			
 		} finally {
-			session.close();
+			
 		}
 		return lo;
 	}

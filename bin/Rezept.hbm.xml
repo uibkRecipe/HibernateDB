@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated May 12, 2014 5:56:16 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="persistent.classes.Rezept" table="REZEPT">
+    <class name="persistent.classes.Rezept" table="rezept">
         <id name="rez_id" type="int" access="field">
             <column name="rez_id" />
             <generator class="assigned" />
@@ -17,12 +17,15 @@
         <property name="zubereitung" type="java.lang.String" access="field">
             <column name="zubereitung" />
         </property>
-        <!--  <list name="zutaten" inverse="false" table="ZUTATEN" lazy="true" access="field">
-            <key>
-                <column name="REZ_ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="persistent.classes.Zutaten" />
-        </list> -->
+          <property name="category" access="field">
+            <column name="CATEGORY" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">persistent.classes.Category</param>
+            </type>
+        </property>
+        <property name="image" type="binary">
+        	<column name="Foto" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -1,12 +1,16 @@
 package persistent.classes;
 
+import Interfaces.UserInterface;
 
-public class User{
+
+public class User {
 	private String user_name;
 	private String password;
 	private String email;
 	private String vname;
 	private String nname;
+	private byte[] foto;
+	
 	
 	/* Should be filled only by request with a query*/
 	//private List<String> friends = new ArrayList<String>();
@@ -83,17 +87,19 @@ public class User{
 	public void setNname(String nname) {
 		this.nname = nname;
 	}
-	/*
-	public List<String> getFriends() {
-		return friends;
+	
+	public byte[] getFoto(){
+		return foto;
 	}
-
-	public void setFriends(List<String> friends) {
-		this.friends = friends;
+	public void setFoto(byte [] foto){
+		this.foto = foto;
 	}
-	*/
+	
+	
 	public String toString(){
 		return "ID = " + user_name + "email = " + email;
 	}
+	
+	
 
 }

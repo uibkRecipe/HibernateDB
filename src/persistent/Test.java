@@ -1,23 +1,24 @@
 package persistent;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import persistent.classes.Ort;
+import persistent.classes.Category;
+import persistent.classes.Rezept;
+import persistent.classes.Zutaten;
 import persistent.hibernateManager.HibernateManager;
 
 
 public class Test {
 	
-	private static void printList(List lo){
-		for(int i = 0; i < lo.size(); i++){
-			System.out.println(lo.get(i));
-		}
-	}
-	
 	
 	public static void main(String[] args) {
+		
+		Rezept r = new Rezept("mirko", "pasta alla matriciana", "CIAO", new ArrayList<Zutaten>(), Category.CO2NEUTRAL);
+	
 		HibernateManager hm = new HibernateManager();
-		List<Ort> ort = hm.findOrtByName("o");
-		printList(ort);
+		
+		
+		
+		hm.closeSession();
 	}
 }

@@ -1,24 +1,25 @@
 package persistent.hibernateManager;
 
+import java.util.List;
+
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import persistent.classes.User;
+import persistent.help.ByteConverter;
 
-public class UserManager {
-	Session session;
+public class UserManager extends PersistentManager {
 
-	
+	ByteConverter byteConverter;
 
 	/**
-	 * Constructor given a session it return an HibernateManager
+	 * Constructor given a session it return an UserManager
 	 * 
 	 * @param session
 	 */
 	public UserManager(Session session) {
-		this.session = session;
+		super(session);
+		ByteConverter byteConverter = new ByteConverter();
 	}
 
 	/**
@@ -84,6 +85,23 @@ public class UserManager {
 		}
 		return true;
 	}
+	
+	public byte[] getUserFoto(String username){
+		byte [] image = new byte[0];
+		session.beginTransaction();
+		try {
+			SQLQuery query1 = session.createSQLQuery
+					("SELECT Foto FROM user WHERE user_name='" + username +"'");
+			List lbyte = query1.list();
+			image = byteConverter.serialize(lbyte.get(0));
+		} catch(Exception e){
+			
+		} finally {
+			
+		}
+		return image;
+	}
+
 
 	
 }

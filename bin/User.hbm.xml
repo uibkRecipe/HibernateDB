@@ -20,16 +20,8 @@
         <property name="nname" type="java.lang.String">
             <column name="nachname" />
         </property>
-       <!-- NOT SURE
-          <list name="friends" inverse="false" table="USER" lazy="true">
-            <key>
-                <column name="USER_NAME" />
-            </key>
-            <list-index></list-index>
-            <element type="java.lang.String">
-                <column name="FRIENDS" />
-            </element>
-        	</list>
-        -->
+      	<property name="image" type="binary">
+        	<column name="Foto" />
+        </property>
     </class>
 </hibernate-mapping>
