@@ -15,7 +15,7 @@ public class BestehtAusManager extends PersistentManager{
 		super(session);
 	}
 	
-	public List<Zutaten> getZutaten(Rezept r){
+	/*public List<Zutaten> getZutaten(Rezept r){
 		List<Zutaten> ls;
 		session.beginTransaction();
 		try {
@@ -26,5 +26,5 @@ public class BestehtAusManager extends PersistentManager{
 		
 		
 		return new ArrayList<Zutaten>();
-	}
+	}*/
 }
