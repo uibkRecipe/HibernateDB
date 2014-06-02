@@ -1,11 +1,6 @@
 package persistent.interfaces;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import persistent.classes.IngredientType;
 

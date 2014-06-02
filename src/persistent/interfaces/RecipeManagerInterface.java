@@ -1,5 +1,6 @@
 package persistent.interfaces;
 
+import java.io.File;
 import java.util.List;
 
 import persistent.classes.Category;
@@ -34,5 +35,24 @@ public interface RecipeManagerInterface {
 	 * @return
 	 */
 	public List<Recipe> getRezeptByCategory();
-
+	
+	/**
+	 * Set the File f as recipe foto of the user u
+	 * 
+	 * @param u
+	 *            user, that want to set the foto
+	 * @param f
+	 *            file, that contains the foto
+	 * @return true on success false otherwise
+	 */
+	public boolean setRecipeFoto(String username, int recipeID, File f);
+	
+	
+	
+	/**
+	 * Find a recipe by its ID
+	 * @param recipeID
+	 * @return the Recipe if the ID was found, null otherwise
+	 */
+	public Recipe findRecipeById(int recipeID);
 }

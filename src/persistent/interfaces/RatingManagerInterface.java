@@ -1,8 +1,5 @@
 package persistent.interfaces;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import persistent.classes.Rating;
 
 public interface RatingManagerInterface {

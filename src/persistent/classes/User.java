@@ -1,5 +1,8 @@
 package persistent.classes;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 
 
 public class User {
@@ -47,7 +50,32 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	
+	/**
+	 * Constructor to create a new user, with asking for surname and name
+	 * @param uname	Username of the new user
+	 * @param password Password of the new user
+	 * @param email Email of the new user
+	 * @param vname surname of the new user
+	 * @param nname name of the new user
+	 * @param file to add a photo to the profile
+	 */
+	public User(String uname, String password, String email, String firstname, String lastname, File f){
+		this.username = uname;
+		this.password = password;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		foto = new byte[(int)f.length()];
+		
+		
+		try {
+			FileInputStream fileInputStream = new FileInputStream(f);
+			fileInputStream.read(foto);
+			fileInputStream.close();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

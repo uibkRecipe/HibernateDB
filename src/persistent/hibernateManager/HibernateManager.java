@@ -16,7 +16,17 @@ import persistent.classes.Rating;
 import persistent.classes.Recipe;
 import persistent.classes.Region;
 import persistent.classes.User;
+import persistent.interfaces.CityManagerInterface;
+import persistent.interfaces.ComposedOfManagerInterface;
+import persistent.interfaces.CountryManagerInterface;
+import persistent.interfaces.FriendManagerInterface;
 import persistent.interfaces.HibernateManagerInterface;
+import persistent.interfaces.IngredientManagerInterface;
+import persistent.interfaces.IngredientTypeManagerInterface;
+import persistent.interfaces.RatingManagerInterface;
+import persistent.interfaces.RecipeManagerInterface;
+import persistent.interfaces.RegionManagerInterface;
+import persistent.interfaces.UserManagerInterface;
 /**
  * Fassade for hibernate
  * @author mirko
@@ -24,25 +34,37 @@ import persistent.interfaces.HibernateManagerInterface;
  */
 public class HibernateManager implements HibernateManagerInterface{
 	
-	private SessionFactory sessionFactory; 
-	StandardServiceRegistryBuilder ssrb;
+	private SessionFactory 					sessionFactory; 
+	StandardServiceRegistryBuilder 			ssrb;
 	
-	private CityManager cityManager;
-	private ComposedOfManager composedOfManager;
-	private CountryManager countryManager;
-	private FriendManager friendManager;
-	private IngredientManager ingredientManager;
-	private IngredientTypeManager ingredientTypeManager;
-	private RatingManager ratingManager;
-	private RecipeManager recipeManager;
-	private RegionManager regionManager;
-	private UserManager userManager;
+	private CityManagerInterface 			cityManager;
+	private ComposedOfManagerInterface 		composedOfManager;
+	private CountryManagerInterface 		countryManager;
+	private FriendManagerInterface 			friendManager;
+	private IngredientManagerInterface 		ingredientManager;
+	private IngredientTypeManagerInterface 	ingredientTypeManager;
+	private RatingManagerInterface 			ratingManager;
+	private RecipeManagerInterface 			recipeManager;
+	private RegionManagerInterface 			regionManager;
+	private UserManagerInterface 			userManager;
+	
+	
+	
+	private static HibernateManager instance = null;
+
+	public static HibernateManager getInstance() {
+		if (instance == null) {
+			instance = new HibernateManager();
+		}
+
+		return instance;
+	}
 	
 	
 	/**
 	 * Constructor return a new HibernateManager
 	 */
-	public HibernateManager() {
+	private HibernateManager() {
 		Configuration configuration = new Configuration();
 		configuration.configure("hibernate.cfg.xml");
 		ssrb = new StandardServiceRegistryBuilder()
@@ -220,7 +242,17 @@ public class HibernateManager implements HibernateManagerInterface{
 	}
 	
 
-	
+	@Override
+	public boolean setRecipeFoto(String username, int recipeID, File f) {
+		return recipeManager.setRecipeFoto(username, recipeID, f);
+	}
+
+
+	@Override
+	public Recipe findRecipeById(int recipeID) {
+		return recipeManager.findRecipeById(recipeID);
+	}
+
 	
 	/***************************************************************
 	 * 
@@ -297,6 +329,8 @@ public class HibernateManager implements HibernateManagerInterface{
 		return regionManager.getRegionByCountryCode(Code);
 	}
 
+
+	
 
 	
 }

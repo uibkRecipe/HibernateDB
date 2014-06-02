@@ -1,5 +1,8 @@
 package persistent.classes;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 
 public class Recipe  {
 	int ID;
@@ -28,6 +31,26 @@ public class Recipe  {
 		this.time = time;	
 		this.preparation = preparation;
 		///this.foto = foto;
+	}
+	
+	public Recipe(String autor, String name, String subtitle, int time,
+			String preparation, File f) {
+		super();
+		this.autor = autor;
+		this.name = name;
+		this.subtitle = subtitle;
+		this.time = time;	
+		this.preparation = preparation;
+		foto = new byte[(int)f.length()];
+		
+		
+		try {
+			FileInputStream fileInputStream = new FileInputStream(f);
+			fileInputStream.read(foto);
+			fileInputStream.close();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public int getID() {

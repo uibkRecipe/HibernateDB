@@ -51,4 +51,11 @@ public class City {
 	public String toString(){
 		return this.name;
 	}
+	public boolean equals(Object o){
+		City c = (City) o;
+		if(c.latitude == this.latitude && c.longitude == this.longitude)
+			return true;
+		else 
+			return false;
+	}
 }

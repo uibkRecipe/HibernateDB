@@ -2,15 +2,12 @@ package persistent.hibernateManager;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.List;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import persistent.classes.User;
-import persistent.help.ByteConverter;
 import persistent.interfaces.UserManagerInterface;
 
 
@@ -24,7 +21,7 @@ import persistent.interfaces.UserManagerInterface;
  */
 public class UserManager extends PersistentManager implements UserManagerInterface{
 
-	private ByteConverter byteConverter;
+	
 
 	/**
 	 * Constructor given a session it return an UserManager
@@ -33,8 +30,6 @@ public class UserManager extends PersistentManager implements UserManagerInterfa
 	 */
 	public UserManager(SessionFactory sessionFactory) {
 		super(sessionFactory);
-	
-		ByteConverter byteConverter = new ByteConverter();
 	}
 
 	

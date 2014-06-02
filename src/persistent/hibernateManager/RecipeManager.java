@@ -1,5 +1,7 @@
 package persistent.hibernateManager;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import persistent.classes.Category;
+import persistent.classes.City;
 import persistent.classes.Recipe;
 import persistent.interfaces.RecipeManagerInterface;
 
@@ -40,6 +43,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 		return lr;
 		
 	}
+	
 	
 	
 	/**
@@ -96,8 +100,17 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 
 	
 	public List<Recipe> getRezeptByCategory() {
-		
-		return null;
+		List<Recipe> lr = new ArrayList<Recipe>();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT r.* FROM RECIPE r").addEntity("r", Recipe.class).list();
+		} catch (Exception e){
+			if(t != null)
+				t.rollback();
+		}
+		return lr;
 	}
 	public byte [] getFoto(){
 		// TO DO
@@ -110,4 +123,55 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	public String getDescriptionShort(){
 		//Erster Satz 50 character
 	}*/
+
+
+
+
+	@Override
+	public boolean setRecipeFoto(String username, int recipeID, File f) {
+	
+		if(f == null){
+			return false;
+		}
+		Recipe r = findRecipeById(recipeID);
+		
+		Session session = sessionFactory.openSession();
+		boolean success = true;
+		byte [] binaryFile = new byte [(int)f.length()];
+		Transaction t = null; 
+		try {
+			t = session.beginTransaction();
+			FileInputStream fileInputStream = new FileInputStream(f);
+			fileInputStream.read(binaryFile);
+			fileInputStream.close();
+		} catch(Exception e){
+			e.printStackTrace();
+			success = false;
+		}
+		r.setFoto(binaryFile);
+		
+		session.saveOrUpdate(r);
+		session.getTransaction().commit();
+			
+		return success;
+		}
+
+
+
+
+	@Override
+	public Recipe findRecipeById(int recipeID) {
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t = session.beginTransaction();
+		} catch(Exception e){
+			if(t != null)
+				t.rollback();
+		}
+		
+		return (Recipe) session.get(Recipe.class, recipeID);
+	
+	}
+	
 }
