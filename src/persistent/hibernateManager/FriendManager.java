@@ -5,20 +5,23 @@ import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import persistent.classes.Friend;
-import persistent.classes.User;
+import persistent.interfaces.FriendManagerInterface;
 
-public class FriendManager extends PersistentManager {
+public class FriendManager extends PersistentManager implements FriendManagerInterface {
 	
 	
-	public FriendManager(Session session){
-		super(session);
+	public FriendManager(SessionFactory sessionFactory) {
+		super(sessionFactory);
 	}
 	
 	public List<String> getFriend(String username){
 		List<String> lf = new ArrayList<String>();
 		List<String> lf1 = new ArrayList<String>();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		/** If the object is not already contained **/
 		try {
@@ -38,6 +41,7 @@ public class FriendManager extends PersistentManager {
 	}
 	public boolean addFriend(String username1, String username2){
 		boolean ret = true;
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		try {
 			Friend f = new Friend(username1, username2);
@@ -59,24 +63,32 @@ public class FriendManager extends PersistentManager {
 			System.err.println("You cannot delete a not existing friend");
 			return false;
 		}
-		session.beginTransaction();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
 		try {
+			t = session.beginTransaction();
 			session.delete(new Friend(username1, username2));
-			session.getTransaction().commit();
+			
 		} catch(Exception e){
-			
-		} finally {
-			
-		}
-		
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+		} 
+		t.commit();
 		return ret;
 		
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
 	public boolean existFriend(String username1, String username2){
 		boolean exist = true;
 		int count = 0;
-		session.beginTransaction();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
 		try {
+			t = session.beginTransaction();
 			SQLQuery query = session.createSQLQuery
 					("SELECT count(*) FROM freunde WHERE name1='" + username1 + "' AND name2='" + username2 + "'");
 			List<Integer> l = (List<Integer>)query.list();
@@ -89,7 +101,7 @@ public class FriendManager extends PersistentManager {
 			if(count == 0)
 				exist = false;
 		} catch(Exception e){
-			
+			t.rollback();
 		} finally {
 			session.getTransaction().commit();
 		}

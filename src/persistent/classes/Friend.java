@@ -7,39 +7,49 @@ public class Friend implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String name1; //src
-	private String name2; //dest
+	private String username1; //src
+	private String username2; //dest
 	//private boolean isValid;
 	
 	public Friend(){
 		
 	}
-	public Friend(String name1, String name2){
-		this.name1 = name1;
-		this.name2 = name2;
+	public Friend(String username1, String username2){
+		this.username1 = username1;
+		this.username2 = username2;
 		//isValid = false;
 	}
-	public String getName1() {
-		return name1;
+	public String getUsername1() {
+		return username1;
 	}
-	public void setName1(String name1) {
-		this.name1 = name1;
+	public void setUsername1(String username1) {
+		this.username1 = username1;
 	}
-	public String getName2() {
-		return name2;
+	public String getUsername2() {
+		return username2;
 	}
-	public void setName2(String name2) {
-		this.name2 = name2;
+	public void setUsername2(String username2) {
+		this.username2 = username2;
 	}
 	
 	public boolean equals(Object o){
 		Friend f = (Friend) o;
 		boolean toRet = false;
-		if(this.name1 == f.getName1() && this.name2 == f.getName2())
+		if(this.username1 == f.getUsername1() && this.username2 == f.getUsername2())
 			toRet = true;
-		else if(this.name1 == f.getName2() && this.name2 == f.getName1())
+		else if(this.username1 == f.getUsername2() && this.username2 == f.getUsername1())
 			toRet = true;
 		return toRet;
 	}
 	
+	@Override
+	public int hashCode() {
+		int hash = 1;
+		hash = hash * 17 + username1.hashCode();
+		hash = hash * 31 + username2.hashCode();
+		return hash;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

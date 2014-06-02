@@ -1,27 +1,44 @@
 package persistent.hibernateManager;
 
+import java.io.File;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import persistent.classes.Ort;
-import persistent.classes.Rezept;
+import persistent.classes.Category;
+import persistent.classes.City;
+import persistent.classes.Country;
+import persistent.classes.Ingredient;
+import persistent.classes.IngredientType;
+import persistent.classes.Rating;
+import persistent.classes.Recipe;
+import persistent.classes.Region;
 import persistent.classes.User;
+import persistent.interfaces.HibernateManagerInterface;
 /**
  * Fassade for hibernate
  * @author mirko
  *
  */
-public class HibernateManager {
-	private Session session;
+public class HibernateManager implements HibernateManagerInterface{
+	
+	private SessionFactory sessionFactory; 
 	StandardServiceRegistryBuilder ssrb;
-	private UserManager userManager;
-	private OrtManager ortManager;
+	
+	private CityManager cityManager;
+	private ComposedOfManager composedOfManager;
+	private CountryManager countryManager;
 	private FriendManager friendManager;
-	private RezeptManager rezeptManager;
+	private IngredientManager ingredientManager;
+	private IngredientTypeManager ingredientTypeManager;
+	private RatingManager ratingManager;
+	private RecipeManager recipeManager;
+	private RegionManager regionManager;
+	private UserManager userManager;
+	
+	
 	/**
 	 * Constructor return a new HibernateManager
 	 */
@@ -30,22 +47,36 @@ public class HibernateManager {
 		configuration.configure("hibernate.cfg.xml");
 		ssrb = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties());
-		SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb
+		sessionFactory = configuration.buildSessionFactory(ssrb
 				.build());
-		session = sessionFactory.openSession();
-		userManager = new UserManager(session);
-		ortManager = new OrtManager(session);
-		friendManager = new FriendManager(session);
-		rezeptManager = new RezeptManager(session);
+		
+		
+		
+		cityManager = new CityManager(sessionFactory);
+		composedOfManager = new ComposedOfManager(sessionFactory);
+		countryManager = new CountryManager(sessionFactory);
+		friendManager = new FriendManager(sessionFactory);
+		ingredientManager = new IngredientManager(sessionFactory);
+		ingredientTypeManager = new IngredientTypeManager(sessionFactory);
+		ratingManager = new RatingManager(sessionFactory);
+		recipeManager = new RecipeManager(sessionFactory);
+		regionManager = new RegionManager(sessionFactory);
+		userManager = new UserManager(sessionFactory);
 	}
-
+	
+	
+	/**
+	 * 
+	 * @return actual session factory
+	 */
+	public SessionFactory getSessionFactory(){
+		return sessionFactory;
+	}
 	/**
 	 * Close the session
 	 */
 	public void closeSession() {
-		if(session.isConnected())
-			session.close();
-		
+		sessionFactory.close();
 	}
 	
 	/****************************************************************
@@ -55,7 +86,7 @@ public class HibernateManager {
 	 ****************************************************************/
 	
 
-	public boolean logIn(String userName, String suggestedPassword){
+	public User logIn(String userName, String suggestedPassword){
 		return userManager.logIn(userName, suggestedPassword);
 	}
 		
@@ -63,22 +94,78 @@ public class HibernateManager {
 		return userManager.addUser(user);
 	}
 	
+	
+	public User findUserById(String userName) {
+		return userManager.findUserById(userName);
+	}
+	
+	
+	
+	
+	public boolean setUserFoto(User u, File f){
+		return userManager.setUserFoto(u, f);
+	}
+	
+
+	public boolean setUserAsNotActive(User u){
+		return userManager.setUserAsNotActive(u);
+	}
+	public boolean setUserAsActive(String username){
+		return userManager.setUserAsActive(username);
+	}
+	
+	
+	
+	
+	/****************************************************************
+	 * 
+	 * Country Functionalities
+	 * 
+	 ****************************************************************/
+	
+	public List<String> getCountryList(){
+		return countryManager.getCountryList();
+	}
+
+	public Country getCountryByCode(String countryCode){
+		return countryManager.getCountryByCode(countryCode);
+	}
+	
+	public List<String> findCountryByName(String countryName){
+		return countryManager.findCountryByName(countryName);
+	}
+	
+	@Override
+	public String findCountryCodeByName(String countryName) {
+		return countryManager.findCountryCodeByName(countryName);
+	}
+	
+	
+	
+	
+	
 	/*****************************************************************
 	 * 
-	 * Ort Functionalities
+	 * City Functionalities
 	 * 
 	 *****************************************************************/
 	
-	public boolean addOrt(Ort ort){
-		return ortManager.addOrt(ort);
+	
+	public City findCityByID(int cityID){
+		return cityManager.findCityByID(cityID);
 	}
-
-	public Ort findOrtById(int ortId){
-		return ortManager.findOrtById(ortId);
+	public List<City> findCityByName(String cityName) {
+		return cityManager.findCityByName(cityName);
 	}
-	public List<Ort> findOrtByName(String ortName) {
-		return ortManager.findOrtByName(ortName);
+	
+	@Override
+	public List<City> findCityNameByCountryAndRegion(String country,
+			String region) {
+		
+		return cityManager.findCityNameByCountryAndRegion(country, region);
 	}
+	
+	
 	/******************************************************************
 	 * 
 	 * 
@@ -95,15 +182,121 @@ public class HibernateManager {
 	public boolean deleteFriend(String username1, String username2){
 		return friendManager.deleteFriend(username1, username2);
 	}
+	@Override
+	public boolean existFriend(String username1, String username2) {
+		return friendManager.existFriend(username1, username2);
+	}
 	
 	/****************************************************************
 	 *  
-	 * Rezept functionalities
+	 * Recipe functionalities
 	 *
 	 ****************************************************************/
-	public boolean addRezept(Rezept r){
-		return rezeptManager.addRezept(r);
+	public boolean addRecipe(Recipe r){
+		return recipeManager.addRecipe(r);
+	}
+	
+	public List<Recipe> findRecipeByAutor(String username){
+		return recipeManager.findRecipeByAutor(username);
 	}
 	
 
+	@Override
+	public boolean removeRecipe(String username, int recipeID) {
+		
+		return recipeManager.removeRecipe(username, recipeID);
+	}
+
+
+	@Override
+	public List<Recipe> getRezeptByCategory(Category C) {
+		return recipeManager.getRezeptByCategory(C);
+	}
+
+
+	@Override
+	public List<Recipe> getRezeptByCategory() {
+		return recipeManager.getRezeptByCategory();
+	}
+	
+
+	
+	
+	/***************************************************************
+	 * 
+	 * IngredientType manager
+	 * 
+	 ***************************************************************/
+	public List<String> getAllIngredientType(){
+		return ingredientTypeManager.getAllIngredientType();
+	}
+	public List<IngredientType> findIngredientByName(String name){
+		return ingredientTypeManager.findIngredientByName(name);
+	}
+	public boolean addIngredientType(IngredientType ingredientType){
+		return ingredientTypeManager.addIngredientType(ingredientType);
+	}
+	
+
+	
+
+
+	
+
+
+	
+
+
+
+
+	/***********************************************************
+	 * 
+	 * Composed Of
+	 * 
+	 ***********************************************************/
+	@Override
+	public List<IngredientType> getIngredients(int recipeID) {
+		return composedOfManager.getIngredients(recipeID);	
+	}
+	@Override
+	public List<Recipe> findRezeptByIngredient(List<IngredientType> lz) {
+		return composedOfManager.findRezeptByIngredient(lz);
+	}
+	
+	public boolean addIngredientToRecipe(int recipeID, List<IngredientType> ingredients,
+			List<String> quantity){
+		return composedOfManager.addIngredientToRecipe(recipeID, ingredients, quantity);
+	}
+
+	/************************************************************************
+	 * 
+	 * Ingredient
+	 * 
+	 ************************************************************************/
+	@Override
+	public boolean addIngredient(Ingredient ingredient) {
+		return ingredientManager.addIngredient(ingredient);
+		
+	}
+	/***************************************************************************
+	 * 
+	 * Rating 
+	 * 
+	 ****************************************************************************/
+	public boolean addRating(Rating rating){
+		return ratingManager.addRating(rating);
+	}
+	
+	/***************************************************************************
+	 * 
+	 * Region
+	 * 
+	 ****************************************************************************/
+	
+	public List<Region> getRegionByCountryCode(String Code){
+		return regionManager.getRegionByCountryCode(Code);
+	}
+
+
+	
 }

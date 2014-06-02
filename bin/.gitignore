@@ -9,3 +9,12 @@
 /Zutatentyp.hbm.xml
 /hibernate.cfg.xml
 /persistent/
+/ComposedOfManager.hbm.xml
+/Rating.hbm.xml
+/City.hbm.xml
+/Country.hbm.xml
+/Region.hbm.xml
+/Recipe.hbm.xml
+/Ingredient.hbm.xml
+/IngredientType.hbm.xml
+/ComposedOf.hbm.xml

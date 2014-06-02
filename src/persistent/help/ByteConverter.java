@@ -1,5 +1,6 @@
 package persistent.help;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,13 +13,18 @@ public class ByteConverter {
 
 public  byte[] serialize(Object obj) throws IOException {
   
-    	ByteArrayOutputStream out = new ByteArrayOutputStream();
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
     try {	
     	ObjectOutputStream os = new ObjectOutputStream(out);
     	os.writeObject(obj);
     } catch (IOException e){
     	
-    } finally {
+    } catch (java.lang.NullPointerException n){
+    	System.out.println("n" + n.getMessage());
+    } catch (Exception e){
+    	System.out.println("bella " + e.getMessage());
+    }
+    finally {
     	
     }
     return out.toByteArray();
@@ -38,6 +44,11 @@ public static Object deserialize(byte[] data) throws IOException, ClassNotFoundE
     
     return is.readObject();
     
+}
+
+public BufferedImage Byte2image(byte [] foto){
+	
+	return new BufferedImage(0,0,BufferedImage.TYPE_3BYTE_BGR);
 }
 
 
