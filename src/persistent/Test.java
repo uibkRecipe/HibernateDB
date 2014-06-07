@@ -4,7 +4,7 @@ import java.util.List;
 
 import persistent.classes.City;
 import persistent.classes.Region;
-import persistent.hibernateManager.HibernateManager;
+import persistent.hibernateManager.HibernateUtil;
 
 
 public class Test {
@@ -16,7 +16,7 @@ public class Test {
 	public static void main(String[] args) {
 	
 	
-		HibernateManager hm = HibernateManager.getInstance();
+		HibernateUtil hm = HibernateUtil.getInstance();
 	
 		String code = hm.findCountryCodeByName("AUSTRIA");
 		List<Region> region = hm.getRegionByCountryCode(code);

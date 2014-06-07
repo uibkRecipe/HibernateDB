@@ -8,10 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import persistent.classes.City;
-import persistent.classes.Ingredient;
 import persistent.classes.IngredientType;
-import persistent.classes.Recipe;
 import persistent.interfaces.IngredientTypeManagerInterface;
 
 public class IngredientTypeManager extends PersistentManager 

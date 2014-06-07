@@ -8,12 +8,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import persistent.classes.City;
-import persistent.classes.Country;
 import persistent.interfaces.CityManagerInterface;
 /**
  * 
  * @author mirko
- *
+ *http://www.vogella.com/tutorials/Mockito/article.html
  */
 public class CityManager extends PersistentManager implements CityManagerInterface
   {

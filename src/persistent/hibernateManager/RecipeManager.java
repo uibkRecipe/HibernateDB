@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import persistent.classes.Category;
-import persistent.classes.City;
 import persistent.classes.Recipe;
 import persistent.interfaces.RecipeManagerInterface;
 

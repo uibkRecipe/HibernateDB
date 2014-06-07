@@ -7,7 +7,7 @@ package persistent.interfaces;
  * @author mirko
  *
  */
-public interface HibernateManagerInterface 
+public interface HibernateUtilInterface 
 extends 
 CityManagerInterface, 
 ComposedOfManagerInterface,

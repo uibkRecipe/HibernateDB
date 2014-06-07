@@ -5,15 +5,18 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import persistent.hibernateManager.HibernateManager;
+import persistent.hibernateManager.HibernateUtil;
 /**
  * 
  * @author mirko
  *
  */
 public class HibernateUtilJUnitTest {
-	HibernateManager hm = HibernateManager.getInstance();
+	HibernateUtil hm = HibernateUtil.getInstance();
 	@Test
+	/**
+	 * This test check if we using a false password if it yields a null object
+	 */
 	public void falsePassword() {
 		
 		assertTrue(hm.logIn("mirko", "thomas") == null);
@@ -21,17 +24,15 @@ public class HibernateUtilJUnitTest {
 	}
 	
 	@Test
+	/**
+	 * This test check if a non existent User yields a null object
+	 */
 	public void notExistentUser() {
 		
 		assertTrue(hm.logIn("maria", "ciao") == null);
 		
 	}
 	
-	
-	@Test 
-	public void twoSameCityTest(){
-		assertEquals(hm.findCityByName("Bolzano").get(0), hm.findCityByName("Bozen").get(0));
-	}
 	
 	
 	

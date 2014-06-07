@@ -20,7 +20,7 @@ import persistent.interfaces.CityManagerInterface;
 import persistent.interfaces.ComposedOfManagerInterface;
 import persistent.interfaces.CountryManagerInterface;
 import persistent.interfaces.FriendManagerInterface;
-import persistent.interfaces.HibernateManagerInterface;
+import persistent.interfaces.HibernateUtilInterface;
 import persistent.interfaces.IngredientManagerInterface;
 import persistent.interfaces.IngredientTypeManagerInterface;
 import persistent.interfaces.RatingManagerInterface;
@@ -32,7 +32,7 @@ import persistent.interfaces.UserManagerInterface;
  * @author mirko
  *
  */
-public class HibernateManager implements HibernateManagerInterface{
+public class HibernateUtil implements HibernateUtilInterface{
 	
 	private SessionFactory 					sessionFactory; 
 	StandardServiceRegistryBuilder 			ssrb;
@@ -50,11 +50,11 @@ public class HibernateManager implements HibernateManagerInterface{
 	
 	
 	
-	private static HibernateManager instance = null;
+	private static HibernateUtil instance = null;
 
-	public static HibernateManager getInstance() {
+	public static HibernateUtil getInstance() {
 		if (instance == null) {
-			instance = new HibernateManager();
+			instance = new HibernateUtil();
 		}
 
 		return instance;
@@ -64,7 +64,7 @@ public class HibernateManager implements HibernateManagerInterface{
 	/**
 	 * Constructor return a new HibernateManager
 	 */
-	private HibernateManager() {
+	private HibernateUtil() {
 		Configuration configuration = new Configuration();
 		configuration.configure("hibernate.cfg.xml");
 		ssrb = new StandardServiceRegistryBuilder()
