@@ -60,10 +60,13 @@ public class UserManager extends PersistentManager implements UserManagerInterfa
 		User u = null;
 		
 			
-		session.beginTransaction();
+		Transaction t = null; 
 		try {
+			t = session.beginTransaction();
 			u = (User) session.get(User.class, userName);
 		} catch (Exception e) {
+			if(t != null)
+				t.rollback();
 			System.out.println("User " + userName + "could not be found");
 		} 
 		session.close();
