@@ -129,11 +129,17 @@ public class HibernateUtil implements HibernateUtilInterface{
 	}
 	
 
-	public boolean setUserAsNotActive(User u){
-		return userManager.setUserAsNotActive(u);
+	public boolean setUserAsNotActive(String username){
+		return userManager.setUserAsNotActive(username);
 	}
 	public boolean setUserAsActive(String username){
 		return userManager.setUserAsActive(username);
+	}
+	
+	@Override
+	public boolean changePassword(String username, String oldPassword,
+			String newPassword, String newPasswordConfirm) {
+		return userManager.changePassword(username, oldPassword, newPassword, newPasswordConfirm);
 	}
 	
 	
@@ -368,6 +374,9 @@ public class HibernateUtil implements HibernateUtilInterface{
 		return cityManager.findCityByID(u.getCity());
 		
 	}
+
+
+
 
 
 	

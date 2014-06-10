@@ -64,7 +64,7 @@ public interface UserManagerInterface {
 	 *            the user to render active
 	 * @return true on success false otherwise
 	 */
-	public boolean setUserAsNotActive(User u);
+	public boolean setUserAsNotActive(String username);
 
 	/**
 	 * This function render a user inactive
@@ -81,6 +81,7 @@ public interface UserManagerInterface {
 	 * 
 	 * 
 	 */
+	public boolean changePassword(String username, String oldPassword, String newPassword, String newPasswordConfirm);
 	 
 	
 }

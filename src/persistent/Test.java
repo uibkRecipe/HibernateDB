@@ -20,8 +20,7 @@ public class Test {
 	
 		HibernateUtil hm = HibernateUtil.getInstance();
 		
-		System.out.println(hm.logIn("mirko", "ciao"));;
-		
+	
 		
 		hm.closeSession();
 	}

@@ -68,7 +68,9 @@ public class UserManager extends PersistentManager implements UserManagerInterfa
 			if(t != null)
 				t.rollback();
 			System.out.println("User " + userName + "could not be found");
-		} 
+		} finally {
+			t.commit();
+		}
 		session.close();
 		return u;
 	}
@@ -121,45 +123,90 @@ public class UserManager extends PersistentManager implements UserManagerInterfa
 		u.setFoto(binaryFile);
 		session.save(u);
 		session.getTransaction().commit();
-		
+		session.close();
 		return success;
 	}
 	
 
 	
 	
-	public boolean setUserAsNotActive(User u){
+	public boolean setUserAsNotActive(String username){
+		User u = this.findUserById(username);
 		boolean success = true;
 		Session session = sessionFactory.openSession();
-		Transaction t = session.beginTransaction();
-		u.setIsActive(0);
+		Transaction t = null;
+		
 		try {
-			session.update(u);
+			t = session.beginTransaction();
+			u.setIsActive(0);
+			session.saveOrUpdate(u);
+			
 		} catch(Exception e){
 			e.printStackTrace();
-			t.rollback();
+			if(t != null)
+				t.rollback();
 			success = false;
+		} finally {
+			t.commit();
 		}
-		t.commit();
-		return success;
+			return success;
 	}
 	
 	
 	public boolean setUserAsActive(String username){
 		boolean success = true;
 		Session session = sessionFactory.openSession();
-		Transaction t = session.beginTransaction();
+		Transaction t = null;
 		
-		User u  = this.findUserById(username);
-		u.setIsActive(1);
+	
 		try {
-			session.update(u);
+			User u  = this.findUserById(username);
+			if(u == null)
+				throw new Exception();
+			u.setIsActive(1);
+			t = session.beginTransaction();
+			session.saveOrUpdate(u);
 		} catch(Exception e){
+			System.out.println("Hello World");
 			e.printStackTrace();
-			t.rollback();
+			if(t != null)
+				t.rollback();
 			success = false;
 		}
 		t.commit();
+		return success;
+	}
+
+
+	@Override
+	public boolean changePassword(String username, String oldPassword,
+			String newPassword, String newPasswordConfirm) {
+		User u = this.logIn(username, oldPassword);
+		boolean success = true;
+		if(u == null){
+			System.out.println("The given old password is not correct");
+			return false;
+		}
+		if(!newPassword.equals(newPasswordConfirm)){
+			System.out.println("The given new passwords are different");
+			return false;
+		}
+		Session s = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t = s.beginTransaction();
+		
+			u.setPassword(newPassword);
+			s.update(u);
+		} catch(Exception e) {
+			if(t != null)
+				t.rollback();
+			success = false;
+		} finally {
+			t.commit();
+			s.close();
+		}
+		
 		return success;
 	}
 	
