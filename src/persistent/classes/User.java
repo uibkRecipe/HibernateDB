@@ -47,6 +47,7 @@ public class User {
 		this.lastname = null;
 		this.city = city;
 		this.country = country;
+		this.isActive = 1;
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public class User {
 		this.lastname = lastname;
 		this.city = city;
 		this.country = country;
+		this.isActive = 1;
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		foto = new byte[(int)f.length()];
-		
+		this.isActive = 1;
 		
 		try {
 			FileInputStream fileInputStream = new FileInputStream(f);

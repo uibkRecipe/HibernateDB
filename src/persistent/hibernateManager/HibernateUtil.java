@@ -145,7 +145,7 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * 
 	 ****************************************************************/
 	
-	public List<String> getCountryList(){
+	public List<Country> getCountryList(){
 		return countryManager.getCountryList();
 	}
 
@@ -237,8 +237,8 @@ public class HibernateUtil implements HibernateUtilInterface{
 
 
 	@Override
-	public List<Recipe> getRezeptByCategory(Category C) {
-		return recipeManager.getRezeptByCategory(C);
+	public List<Recipe> getRezeptByCategory(String category) {
+		return recipeManager.getRezeptByCategory(category);
 	}
 
 
@@ -265,7 +265,7 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * IngredientType manager
 	 * 
 	 ***************************************************************/
-	public List<String> getAllIngredientType(){
+	public List<IngredientType> getAllIngredientType(){
 		return ingredientTypeManager.getAllIngredientType();
 	}
 	public List<IngredientType> findIngredientByName(String name){
@@ -304,6 +304,24 @@ public class HibernateUtil implements HibernateUtilInterface{
 	public boolean addIngredientToRecipe(int recipeID, List<IngredientType> ingredients,
 			List<String> quantity){
 		return composedOfManager.addIngredientToRecipe(recipeID, ingredients, quantity);
+	}
+	
+	@Override
+	public List<Recipe> findRecipeByIngredient(int ingredient1) {
+		return composedOfManager.findRecipeByIngredient(ingredient1);
+	}
+
+
+	@Override
+	public List<Recipe> findRecipeByIngredient(int ingredient1, int ingredient2) {
+		return composedOfManager.findRecipeByIngredient(ingredient1, ingredient2);
+	}
+
+
+	@Override
+	public List<Recipe> findRecipeByIngredient(int ingredient1,
+			int ingredient2, int ingredient3) {
+		return composedOfManager.findRecipeByIngredient(ingredient1, ingredient2, ingredient3);
 	}
 
 	/************************************************************************
@@ -345,11 +363,14 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * 
 	 *******************************************************************/
 	@Override
-	public City getUserPosition(User u) {
-		
+	public City getUserPosition(String username) {
+		User u = findUserById(username);
 		return cityManager.findCityByID(u.getCity());
 		
 	}
+
+
+	
 
 
 

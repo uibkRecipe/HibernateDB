@@ -12,11 +12,16 @@ public class Recipe  {
 	int time;
 	int cooked;
 	int numberOfRatings;
-	float averageRating;
+	Float averageRating;
 	String preparation;
 	
+	String category;
 	byte[] foto;
 	
+	
+	
+	
+
 	
 	public Recipe(){
 		
@@ -30,6 +35,7 @@ public class Recipe  {
 		this.subtitle = subtitle;
 		this.time = time;	
 		this.preparation = preparation;
+		this.cooked = 0;
 		///this.foto = foto;
 	}
 	
@@ -42,7 +48,7 @@ public class Recipe  {
 		this.time = time;	
 		this.preparation = preparation;
 		foto = new byte[(int)f.length()];
-		
+		this.cooked = 0;
 		
 		try {
 			FileInputStream fileInputStream = new FileInputStream(f);
@@ -114,6 +120,16 @@ public class Recipe  {
 	public void setPreparation(String preparation) {
 		this.preparation = preparation;
 	}
+	
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	
 	public String toString(){
 		return this.name + " " + this.subtitle;

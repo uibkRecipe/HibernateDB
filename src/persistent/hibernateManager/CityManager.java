@@ -35,17 +35,19 @@ public class CityManager extends PersistentManager implements CityManagerInterfa
 	public boolean addCity(City city){
 		boolean success = true;
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Transaction t = null;
 		/** If the object is not already contained **/
 		try {
+			t = session.beginTransaction();
 			session.save(city);
 			
 		} catch (Exception e) {
-			System.out.println("ERROR " + e.getMessage());;
+			e.printStackTrace();
 			success = false;
-			session.getTransaction().rollback();
+			if(t != null)
+				t.rollback();
 		} 
-		session.getTransaction().commit();
+		t.commit();
 		session.close();
 		return success;
 	}
@@ -57,11 +59,16 @@ public class CityManager extends PersistentManager implements CityManagerInterfa
 	public City findCityByID(int cityID){
 		City city = null;
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Transaction t = null;
 		try {
+			
+			t = session.beginTransaction();
 			city = (City) session.get(City.class, cityID);
+			
 		} catch (Exception e) {
-			System.out.println("City " + city + "could not be found");
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}

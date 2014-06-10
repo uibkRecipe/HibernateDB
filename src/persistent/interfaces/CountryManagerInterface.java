@@ -17,7 +17,7 @@ public interface CountryManagerInterface {
 	 * 
 	 * @return a list containing all the names of the countries
 	 */
-	public List<String> getCountryList();
+	public List<Country> getCountryList();
 
 	/**
 	 * This function returns a country instance with the (unique) code equals to
@@ -41,7 +41,7 @@ public interface CountryManagerInterface {
 	/**
 	 * 
 	 * @param countryName
-	 * @return
+	 * @return CountryCode
 	 */
 	public String findCountryCodeByName(String countryName);
 	

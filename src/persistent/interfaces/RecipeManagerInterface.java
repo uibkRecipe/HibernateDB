@@ -28,7 +28,7 @@ public interface RecipeManagerInterface {
 	 * @param C
 	 * @return
 	 */
-	public List<Recipe> getRezeptByCategory(Category C);
+	public List<Recipe> getRezeptByCategory(String category);
 
 	/**
 	 * 

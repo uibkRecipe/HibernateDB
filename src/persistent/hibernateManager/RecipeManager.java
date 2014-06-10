@@ -32,7 +32,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 			lr = (List<Recipe>) session.createSQLQuery("SELECT {Recipe.*} FROM RECIPE {Recipe} WHERE AUTOR='" + username + "'")
 				    .addEntity("Recipe", Recipe.class).list();
 		} catch (Exception e){
-			
+			e.printStackTrace();
 			lr = null;
 			t.rollback();
 		}
@@ -92,9 +92,20 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	}
 
 	
-	public List<Recipe> getRezeptByCategory(Category C) {
-	
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Recipe> getRezeptByCategory(String category) {
+		List<Recipe> lr = new ArrayList<Recipe>();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t  = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT * FROM RECIPE  WHERE CATEGORY='" + category + "'").addEntity(Recipe.class).list();
+		} catch (Exception e){
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+		}
+		return lr;
 	}
 
 	
@@ -108,6 +119,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 		} catch (Exception e){
 			if(t != null)
 				t.rollback();
+			e.printStackTrace();
 		}
 		return lr;
 	}
@@ -115,13 +127,8 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 		// TO DO
 		return new byte[0];
 	}
-	/*public String getTitle(){
-		//TO DO
-		
-	}
-	public String getDescriptionShort(){
-		//Erster Satz 50 character
-	}*/
+
+
 
 
 
@@ -172,5 +179,19 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 		return (Recipe) session.get(Recipe.class, recipeID);
 	
 	}
+	
+	public List<Recipe> findRecipeByTime(int time){
+	
+		return null;
+	}
+	
+	public List<Recipe> findRecipeByName(String name){
+		//Like 
+		return null;
+	}
+
+
+
+
 	
 }

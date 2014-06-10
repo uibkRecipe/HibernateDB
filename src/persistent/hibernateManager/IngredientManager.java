@@ -1,5 +1,7 @@
 package persistent.hibernateManager;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,6 +35,10 @@ public class IngredientManager extends PersistentManager implements IngredientMa
 		transaction.commit();
 		
 		return success;
+	}
+	
+	public List<Ingredient> findIngredientsByIngredientType(int IngredientTypeID){
+		return null;
 	}
 
 }

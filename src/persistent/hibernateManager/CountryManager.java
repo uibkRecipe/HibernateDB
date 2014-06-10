@@ -26,13 +26,13 @@ public class CountryManager extends PersistentManager implements CountryManagerI
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<String> getCountryList(){
-		List<String> lc = new ArrayList<String>();
+	public List<Country> getCountryList(){
+		List<Country> lc = new ArrayList<Country>();
 		Session session = sessionFactory.openSession();
 		Transaction t = session.beginTransaction();
 		try {
-			SQLQuery query = session.createSQLQuery("SELECT NAME FROM COUNTRY");
-			lc = (List<String>)query.list();
+			SQLQuery query = session.createSQLQuery("SELECT * FROM COUNTRY").addEntity(Country.class);
+			lc = (List<Country>)query.list();
 		} catch(Exception e){
 			e.printStackTrace();
 			t.rollback();

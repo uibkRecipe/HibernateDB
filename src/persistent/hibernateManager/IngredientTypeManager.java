@@ -27,12 +27,12 @@ implements IngredientTypeManagerInterface{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<String> getAllIngredientType(){
-		List<String> lz = new ArrayList<String>();
+	public List<IngredientType> getAllIngredientType(){
+		List<IngredientType> lz = new ArrayList<IngredientType>();
 		Session session = sessionFactory.openSession();
 		Transaction t = session.beginTransaction();
 		try {
-			SQLQuery query = session.createSQLQuery("SELECT NAME FROM INGREDIENTTYPE");
+			SQLQuery query = session.createSQLQuery("SELECT NAME FROM INGREDIENTTYPE").addEntity(IngredientType.class);
 			lz = query.list();
 		} catch(Exception e){
 			t.rollback();

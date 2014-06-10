@@ -31,6 +31,6 @@ UserManagerInterface
 	 * 
 	 *
 	 */
-	public City getUserPosition(User u);
+	public City getUserPosition(String username);
 
 }
