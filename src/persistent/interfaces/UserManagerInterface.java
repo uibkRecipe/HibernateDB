@@ -2,6 +2,7 @@ package persistent.interfaces;
 
 import java.io.File;
 
+import persistent.classes.City;
 import persistent.classes.User;
 
 /**
@@ -73,4 +74,13 @@ public interface UserManagerInterface {
 	 * @return true on success false otherwise
 	 */
 	public boolean setUserAsActive(String username);
+
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	 
+	
 }

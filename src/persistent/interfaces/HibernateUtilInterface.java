@@ -1,5 +1,8 @@
 package persistent.interfaces;
 
+import persistent.classes.City;
+import persistent.classes.User;
+
 
 /**
  * My Hibernate Motto: give the function the minimum as possible returns the 
@@ -20,5 +23,14 @@ RecipeManagerInterface,
 RegionManagerInterface, 
 UserManagerInterface
 {
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 *
+	 */
+	public City getUserPosition(User u);
 
 }

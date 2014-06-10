@@ -30,4 +30,10 @@ public interface CityManagerInterface {
 		 * @return
 		 */
 		public List<City> findCityNameByCountryAndRegion(String country, String region);
+		
+		/**
+		 *  Get City with country
+		 * 
+		 */
+		 public List<City> findCityByCountry(String country);
 }

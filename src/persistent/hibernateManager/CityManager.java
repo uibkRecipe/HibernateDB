@@ -91,6 +91,7 @@ public class CityManager extends PersistentManager implements CityManagerInterfa
 		}
 		return lo;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<City> findCityNameByCountryAndRegion(String country,
 			String region) {
@@ -100,6 +101,25 @@ public class CityManager extends PersistentManager implements CityManagerInterfa
 		try {
 			t = session.beginTransaction();
 			cityList = (List<City>) session.createSQLQuery("SELECT c.* FROM CITY c WHERE c.COUNTRY='" + country +"' AND c.REGION='" + region + "'").addEntity("c", City.class).list();
+		} catch (Exception e){
+			if(t != null){
+				t.rollback();
+			}
+			e.printStackTrace();
+					
+		}
+		return cityList;
+		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<City> findCityByCountry(String country) {
+		List<City> cityList = new ArrayList<>();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t = session.beginTransaction();
+			cityList = (List<City>) session.createSQLQuery("SELECT c.* FROM CITY c WHERE c.COUNTRY='" + country +"'").addEntity("c", City.class).list();
 		} catch (Exception e){
 			if(t != null){
 				t.rollback();

@@ -26,7 +26,7 @@ public interface CountryManagerInterface {
 	 * @param countryCode
 	 * @return the country with CODE equals to countryCode
 	 */
-	public Country getCountryByCode(String countryCode);
+	public Country findCountryByCode(String countryCode);
 
 	/**
 	 * This function returns a list of countries' names, that matches the given

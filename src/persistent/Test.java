@@ -4,6 +4,7 @@ import java.util.List;
 
 import persistent.classes.City;
 import persistent.classes.Region;
+import persistent.classes.User;
 import persistent.hibernateManager.HibernateUtil;
 
 
@@ -17,14 +18,9 @@ public class Test {
 	
 	
 		HibernateUtil hm = HibernateUtil.getInstance();
-	
-		String code = hm.findCountryCodeByName("AUSTRIA");
-		List<Region> region = hm.getRegionByCountryCode(code);
-		
-		System.out.println("" + region);
-		List<City> c1 = hm.findCityByName("Innsbruck");
-		List<City> c = hm.findCityNameByCountryAndRegion(code, c1.get(0).getRegion());
-		System.out.println(c);
+		City c = hm.findCityByName("Bolzano").get(0);
+		User u = new User("mirko", "ciao", "mirko@hello.gmail.com", c.getID(), c.getCountry());
+		hm.addUser(u);
 		hm.closeSession();
 	}
 }

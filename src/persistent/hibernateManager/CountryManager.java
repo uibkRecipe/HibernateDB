@@ -45,7 +45,7 @@ public class CountryManager extends PersistentManager implements CountryManagerI
 
 	
 	
-	public Country getCountryByCode(String countryCode){
+	public Country findCountryByCode(String countryCode){
 		
 		Session session = sessionFactory.openSession();
 		Country c = null;
@@ -90,6 +90,9 @@ public class CountryManager extends PersistentManager implements CountryManagerI
 		else 
 			return null;
 	}
+
+
+
 	
 	
 		

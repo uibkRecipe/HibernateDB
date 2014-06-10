@@ -8,6 +8,7 @@ public class City {
 	String name;
 	double latitude;
 	double longitude;
+
 	
 	public City(){}
 	

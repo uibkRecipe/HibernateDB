@@ -149,8 +149,8 @@ public class HibernateUtil implements HibernateUtilInterface{
 		return countryManager.getCountryList();
 	}
 
-	public Country getCountryByCode(String countryCode){
-		return countryManager.getCountryByCode(countryCode);
+	public Country findCountryByCode(String countryCode){
+		return countryManager.findCountryByCode(countryCode);
 	}
 	
 	public List<String> findCountryByName(String countryName){
@@ -185,6 +185,12 @@ public class HibernateUtil implements HibernateUtilInterface{
 			String region) {
 		
 		return cityManager.findCityNameByCountryAndRegion(country, region);
+	}
+	
+
+	@Override
+	public List<City> findCityByCountry(String country) {
+		return cityManager.findCityByCountry(country);	
 	}
 	
 	
@@ -328,6 +334,24 @@ public class HibernateUtil implements HibernateUtilInterface{
 	public List<Region> getRegionByCountryCode(String Code){
 		return regionManager.getRegionByCountryCode(Code);
 	}
+
+
+	
+	/******************************************************************
+	 * 
+	 * Miscellaneous 
+	 * 
+	 *
+	 * 
+	 *******************************************************************/
+	@Override
+	public City getUserPosition(User u) {
+		
+		return cityManager.findCityByID(u.getCity());
+		
+	}
+
+
 
 
 	
