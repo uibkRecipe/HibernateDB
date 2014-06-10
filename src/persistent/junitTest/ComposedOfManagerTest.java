@@ -1,22 +1,28 @@
 package persistent.junitTest;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Test;
+
+import persistent.classes.IngredientType;
 
 public class ComposedOfManagerTest extends PersistentManagerTest{
 
 	@Test
 	public void getIngredients() {
-		// TODO
+		List<IngredientType> l = hm.getIngredients(2);
+		assertEquals(l.size(), 1);
 	}
 
 	@Test
 	public void findRezeptByIngredient() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Test
 	public void addIngredientToRecipe() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
