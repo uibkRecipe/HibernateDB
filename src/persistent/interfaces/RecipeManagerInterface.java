@@ -36,6 +36,7 @@ public interface RecipeManagerInterface {
 	 */
 	public List<Recipe> getRezeptByCategory();
 	
+	
 	/**
 	 * Set the File f as recipe foto of the user u
 	 * 

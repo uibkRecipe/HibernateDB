@@ -94,6 +94,8 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getRezeptByCategory(String category) {
+		if(category.equals("") || category == null)
+			return getRezeptByCategory();
 		List<Recipe> lr = new ArrayList<Recipe>();
 		Session session = sessionFactory.openSession();
 		Transaction t = null;
@@ -109,6 +111,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	public List<Recipe> getRezeptByCategory() {
 		List<Recipe> lr = new ArrayList<Recipe>();
 		Session session = sessionFactory.openSession();

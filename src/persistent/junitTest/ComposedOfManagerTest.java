@@ -17,7 +17,6 @@ public class ComposedOfManagerTest extends PersistentManagerTest{
 
 	@Test
 	public void findRezeptByIngredient() {
-		
 	}
 
 	@Test

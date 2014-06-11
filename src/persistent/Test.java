@@ -1,11 +1,6 @@
 package persistent;
 
-import java.util.List;
-
-import persistent.classes.City;
-import persistent.classes.IngredientType;
-import persistent.classes.Region;
-import persistent.classes.User;
+import persistent.classes.Friend;
 import persistent.hibernateManager.HibernateUtil;
 
 
@@ -19,9 +14,13 @@ public class Test {
 	
 	
 		HibernateUtil hm = HibernateUtil.getInstance();
-		User u = new User("mirko", "ciao", "sad", hm.findCityByName("Bolzano").get(0));
 		
-			System.out.println(hm.addUser(u));
+	
+		hm.addFriend("testUser", "testUser1");
+		
+		hm.addFriend("testUser", "TEST_ACTIVE_USER");
+		
+		hm.addFriend("testUser", "TEST_NOT_ACTIVE_USER");
 		
 		hm.closeSession();
 	}

@@ -3,11 +3,12 @@ package persistent.hibernateManager;
 import java.io.File;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import persistent.classes.Category;
 import persistent.classes.City;
 import persistent.classes.Country;
 import persistent.classes.Ingredient;
@@ -340,11 +341,19 @@ public class HibernateUtil implements HibernateUtilInterface{
 		return ingredientManager.addIngredient(ingredient);
 		
 	}
+	
+	@Override
+	public List<Ingredient> findIngredientsByIngredientType(int ingredientTypeID) {
+		return ingredientManager.findIngredientsByIngredientType(ingredientTypeID);
+	}
+	
 	/***************************************************************************
 	 * 
 	 * Rating 
 	 * 
 	 ****************************************************************************/
+
+	
 	public boolean addRating(Rating rating){
 		return ratingManager.addRating(rating);
 	}
@@ -376,11 +385,10 @@ public class HibernateUtil implements HibernateUtilInterface{
 	}
 
 
-	@Override
-	public Ingredient findIngredient(int ingredientTypeID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
+	
 
 
 

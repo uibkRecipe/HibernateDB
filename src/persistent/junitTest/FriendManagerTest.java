@@ -7,27 +7,24 @@ import org.junit.Test;
 public class FriendManagerTest extends PersistentManagerTest{
 
 	@Test
-	public List<String> getFriend(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public void getFriend() {
+		
 	}
 
 	@Test
-	public boolean addFriend(String username1, String username2) {
-		// TODO Auto-generated method stub
-		return false;
+	public void addFriend() {
+		
 	}
 
 	@Test
-	public boolean deleteFriend(String username1, String username2) {
-		// TODO Auto-generated method stub
-		return false;
+	public void deleteFriend() {
+	
 	}
 
 	@Test
-	public boolean existFriend(String username1, String username2) {
-		// TODO Auto-generated method stub
-		return false;
+	public void existFriend() {
+		
+		
 	}
 
 }

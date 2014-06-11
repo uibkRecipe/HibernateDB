@@ -1,5 +1,7 @@
 package persistent.interfaces;
 
+import java.util.List;
+
 import persistent.classes.Ingredient;
 
 public interface IngredientManagerInterface {
@@ -16,5 +18,5 @@ public interface IngredientManagerInterface {
 	 * 
 	 * 
 	 */
-	public Ingredient findIngredient(int ingredientTypeID);
+	public List<Ingredient> findIngredientsByIngredientType(int ingredientTypeID);
 }

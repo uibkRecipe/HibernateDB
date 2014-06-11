@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import persistent.classes.Ingredient;
 import persistent.classes.IngredientType;
 import persistent.interfaces.IngredientTypeManagerInterface;
 
@@ -92,4 +93,6 @@ implements IngredientTypeManagerInterface{
 		
 		
 	}
+
+
 }

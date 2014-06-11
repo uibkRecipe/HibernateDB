@@ -1,7 +1,7 @@
 package persistent.interfaces;
 
 import persistent.classes.City;
-import persistent.classes.User;
+import persistent.classes.Rating;
 
 
 /**
@@ -32,5 +32,8 @@ UserManagerInterface
 	 *
 	 */
 	public City getUserPosition(String username);
+	
+	
 
+	 
 }

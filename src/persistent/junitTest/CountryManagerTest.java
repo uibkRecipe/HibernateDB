@@ -1,35 +1,23 @@
 package persistent.junitTest;
 
-import java.util.List;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import persistent.classes.Country;
-import persistent.interfaces.CountryManagerInterface;
 
 public class CountryManagerTest extends HibernateUtilJUnitTest {
 
 	@Test
 	public void getCountryList() {
-		//TODO
+		assertEquals(hm.getCountryList().size(), 245);
 	}
 
 	@Test
-	public void getCountryByCode(String countryCode) {
-		//TODO
+	public void findCountry() {
+		assertEquals(hm.findCountryByCode("AT").getName(), hm.findCountryByName("AUSTRIA").get(0));
+		assertEquals(hm.findCountryByCode("IT").getName(), hm.findCountryByName("ITALY").get(0));
 	}
 
-	@Test
-	public void findCountryByName(String countryName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Test
-	public void findCountryCodeByName(String countryName) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 }
