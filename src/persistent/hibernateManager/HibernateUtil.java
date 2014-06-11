@@ -376,6 +376,13 @@ public class HibernateUtil implements HibernateUtilInterface{
 	}
 
 
+	@Override
+	public Ingredient findIngredient(int ingredientTypeID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 

@@ -41,4 +41,10 @@ public class IngredientManager extends PersistentManager implements IngredientMa
 		return null;
 	}
 
+	@Override
+	public Ingredient findIngredient(int ingredientTypeID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -11,4 +11,10 @@ public interface IngredientManagerInterface {
 	 * @return true on success, false otherwise
 	 */
 	public boolean addIngredient(Ingredient ingredient);
+	
+	/**
+	 * 
+	 * 
+	 */
+	public Ingredient findIngredient(int ingredientTypeID);
 }

@@ -18,15 +18,11 @@ public class CityManagerTest  extends PersistentManagerTest{
 	 */
 	public void twoSameCityTest(){
 		assertEquals(hm.findCityByName("Bolzano").get(0), hm.findCityByName("Bozen").get(0));
+		assertEquals(hm.findCityByName("Bozen"), hm.findCityByName("Bozen"));
 	}
 
 
 	@Test
-	/*
-	 * 
-	 * 
-	 * 
-	 */
 	public void findCityByIDTest() {
 		City c = hm.findCityByName("Bolzano").get(0);
 		assertEquals(c, hm.findCityByID(c.getID()));

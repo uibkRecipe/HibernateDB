@@ -35,20 +35,21 @@ public class UserManager extends PersistentManager implements UserManagerInterfa
 	
 	public boolean addUser(User user) {
 		boolean success = true;
-		Session session = sessionFactory.openSession();
+		Session session = null;
 		Transaction t = null; 
 		/** If the object is not already contained **/
 		try {
+			session = sessionFactory.openSession();
 			t = session.beginTransaction();
 			session.save(user);
-			
+			t.commit();
 		} catch (Exception e) {
 			if(t != null)
 				t.rollback();
 			System.out.println("We are sorry but your username already exists");
 			success = false;
 		} finally {
-			t.commit();
+			
 			session.close();
 		}
 		return success;

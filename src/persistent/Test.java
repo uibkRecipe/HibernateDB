@@ -19,8 +19,9 @@ public class Test {
 	
 	
 		HibernateUtil hm = HibernateUtil.getInstance();
+		User u = new User("mirko", "ciao", "sad", hm.findCityByName("Bolzano").get(0));
 		
-	
+			System.out.println(hm.addUser(u));
 		
 		hm.closeSession();
 	}
