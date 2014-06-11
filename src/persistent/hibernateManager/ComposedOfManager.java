@@ -87,7 +87,7 @@ public class ComposedOfManager extends PersistentManager implements ComposedOfMa
 	
 		
 	@Override
-	public List<Recipe> findRezeptByIngredient(List<IngredientType> lz) {
+	public List<Recipe> findRecipeByIngredient(List<IngredientType> lz) {
 		if(lz.isEmpty()){
 			System.err.println("The given list is empty");
 			return null;

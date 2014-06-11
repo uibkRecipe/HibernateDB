@@ -3,9 +3,7 @@ package persistent.hibernateManager;
 import java.io.File;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
@@ -244,14 +242,14 @@ public class HibernateUtil implements HibernateUtilInterface{
 
 
 	@Override
-	public List<Recipe> getRezeptByCategory(String category) {
-		return recipeManager.getRezeptByCategory(category);
+	public List<Recipe> findRecipeByCategory(String category) {
+		return recipeManager.findRecipeByCategory(category);
 	}
 
 
 	@Override
-	public List<Recipe> getRezeptByCategory() {
-		return recipeManager.getRezeptByCategory();
+	public List<Recipe> findRecipeByCategory() {
+		return recipeManager.findRecipeByCategory();
 	}
 	
 
@@ -272,8 +270,8 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * IngredientType manager
 	 * 
 	 ***************************************************************/
-	public List<IngredientType> getAllIngredientType(){
-		return ingredientTypeManager.getAllIngredientType();
+	public List<IngredientType> findAllIngredientType(){
+		return ingredientTypeManager.findAllIngredientType();
 	}
 	public List<IngredientType> findIngredientByName(String name){
 		return ingredientTypeManager.findIngredientByName(name);
@@ -304,8 +302,8 @@ public class HibernateUtil implements HibernateUtilInterface{
 		return composedOfManager.getIngredients(recipeID);	
 	}
 	@Override
-	public List<Recipe> findRezeptByIngredient(List<IngredientType> lz) {
-		return composedOfManager.findRezeptByIngredient(lz);
+	public List<Recipe> findRecipeByIngredient(List<IngredientType> lz) {
+		return composedOfManager.findRecipeByIngredient(lz);
 	}
 	
 	public boolean addIngredientToRecipe(int recipeID, List<IngredientType> ingredients,
@@ -364,8 +362,8 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * 
 	 ****************************************************************************/
 	
-	public List<Region> getRegionByCountryCode(String Code){
-		return regionManager.getRegionByCountryCode(Code);
+	public List<Region> findRegionByCountryCode(String Code){
+		return regionManager.findRegionByCountryCode(Code);
 	}
 
 

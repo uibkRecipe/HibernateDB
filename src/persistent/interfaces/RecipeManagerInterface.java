@@ -3,7 +3,6 @@ package persistent.interfaces;
 import java.io.File;
 import java.util.List;
 
-import persistent.classes.Category;
 import persistent.classes.Recipe;
 
 public interface RecipeManagerInterface {
@@ -28,13 +27,13 @@ public interface RecipeManagerInterface {
 	 * @param C
 	 * @return
 	 */
-	public List<Recipe> getRezeptByCategory(String category);
+	public List<Recipe> findRecipeByCategory(String category);
 
 	/**
 	 * 
 	 * @return
 	 */
-	public List<Recipe> getRezeptByCategory();
+	public List<Recipe> findRecipeByCategory();
 	
 	
 	/**

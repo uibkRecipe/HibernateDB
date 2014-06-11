@@ -2,7 +2,6 @@ package persistent.interfaces;
 
 import java.io.File;
 
-import persistent.classes.City;
 import persistent.classes.User;
 
 /**

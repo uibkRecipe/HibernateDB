@@ -1,7 +1,6 @@
 package persistent.interfaces;
 
 import persistent.classes.City;
-import persistent.classes.Rating;
 
 
 /**

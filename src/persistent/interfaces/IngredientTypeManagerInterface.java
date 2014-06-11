@@ -9,7 +9,7 @@ public interface IngredientTypeManagerInterface {
 	 * 
 	 * @return a list containing all the names of the ingredients
 	 */
-	public List<IngredientType> getAllIngredientType();
+	public List<IngredientType> findAllIngredientType();
 	/**
 	 * Returns a list containing all the ingredients' names, that
 	 * matches the given string name

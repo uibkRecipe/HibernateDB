@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import persistent.classes.Ingredient;
 import persistent.classes.IngredientType;
 import persistent.interfaces.IngredientTypeManagerInterface;
 
@@ -28,7 +27,7 @@ implements IngredientTypeManagerInterface{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<IngredientType> getAllIngredientType(){
+	public List<IngredientType> findAllIngredientType(){
 		List<IngredientType> lz = new ArrayList<IngredientType>();
 		Session session = sessionFactory.openSession();
 		Transaction t = session.beginTransaction();

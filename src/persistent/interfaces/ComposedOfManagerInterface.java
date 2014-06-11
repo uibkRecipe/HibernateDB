@@ -24,7 +24,7 @@ public interface ComposedOfManagerInterface {
 	 * @param lz
 	 * @return
 	 */
-	public List<Recipe> findRezeptByIngredient(List<IngredientType> lz);
+	public List<Recipe> findRecipeByIngredient(List<IngredientType> lz);
 	
 	/**
 	 * This function add the ingredients of a recipe identified by recipeID 

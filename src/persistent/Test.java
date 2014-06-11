@@ -1,6 +1,5 @@
 package persistent;
 
-import persistent.classes.Friend;
 import persistent.hibernateManager.HibernateUtil;
 
 

@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import persistent.classes.Category;
 import persistent.classes.Recipe;
 import persistent.interfaces.RecipeManagerInterface;
 
@@ -93,9 +92,9 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Recipe> getRezeptByCategory(String category) {
+	public List<Recipe> findRecipeByCategory(String category) {
 		if(category.equals("") || category == null)
-			return getRezeptByCategory();
+			return findRecipeByCategory();
 		List<Recipe> lr = new ArrayList<Recipe>();
 		Session session = sessionFactory.openSession();
 		Transaction t = null;
@@ -112,7 +111,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Recipe> getRezeptByCategory() {
+	public List<Recipe> findRecipeByCategory() {
 		List<Recipe> lr = new ArrayList<Recipe>();
 		Session session = sessionFactory.openSession();
 		Transaction t = null;
@@ -126,11 +125,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 		}
 		return lr;
 	}
-	public byte [] getFoto(){
-		// TO DO
-		return new byte[0];
-	}
-
+	
 
 
 
