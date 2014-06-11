@@ -14,6 +14,7 @@ public class Test {
 	
 		HibernateUtil hm = HibernateUtil.getInstance();
 		
+		System.out.println(hm.findFavoriteRecipe("mirko"));
 	
 		hm.closeSession();
 	}

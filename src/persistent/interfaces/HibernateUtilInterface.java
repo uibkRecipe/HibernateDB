@@ -14,6 +14,7 @@ extends
 CityManagerInterface, 
 ComposedOfManagerInterface,
 CountryManagerInterface,
+FavoriteRecipeManagerInterface,
 FriendManagerInterface,
 IngredientManagerInterface, 
 IngredientTypeManagerInterface, 

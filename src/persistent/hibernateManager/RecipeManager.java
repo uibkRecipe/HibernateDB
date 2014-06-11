@@ -21,26 +21,7 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	public List<Recipe> findRecipeByAutor(String username){
-		List<Recipe> lr = new ArrayList<Recipe>();
-		Session session = sessionFactory.openSession();
-		Transaction t = null;
-		try {
-			t = session.beginTransaction();
-			lr = (List<Recipe>) session.createSQLQuery("SELECT {Recipe.*} FROM RECIPE {Recipe} WHERE AUTOR='" + username + "'")
-				    .addEntity("Recipe", Recipe.class).list();
-		} catch (Exception e){
-			e.printStackTrace();
-			lr = null;
-			t.rollback();
-		}
-		
-		session.close();
-		
-		return lr;
-		
-	}
+	
 	
 	
 	
@@ -169,28 +150,89 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	public Recipe findRecipeById(int recipeID) {
 		Session session = sessionFactory.openSession();
 		Transaction t = null;
+		Recipe r = null;
 		try {
+			
 			t = session.beginTransaction();
+			r  = (Recipe) session.get(Recipe.class, recipeID);
 		} catch(Exception e){
 			if(t != null)
 				t.rollback();
 		}
 		
-		return (Recipe) session.get(Recipe.class, recipeID);
+		return r;
 	
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Recipe> findRecipeByTime(int time){
-	
-		return null;
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		List<Recipe> lr  = new ArrayList<>();
+		try {
+			t = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT * FROM RECIPE WHERE TIME <= '" + time + "'");
+		} catch(Exception e){
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+		}
+		return lr;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Recipe> findRecipeByTime(int mintime, int maxtime){
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		List<Recipe> lr  = new ArrayList<>();
+		try {
+			t = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT * FROM RECIPE WHERE TIME >= '" + mintime + "' AND TIME <= '" + maxtime + "'").addEntity(Recipe.class).list();
+		} catch(Exception e){
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+		}
+		return lr;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	public List<Recipe> findRecipeByName(String name){
-		//Like 
-		return null;
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		List<Recipe> lr  = new ArrayList<>();
+		try {
+			t = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT * FROM RECIPE WHERE NAME LIKE '%" + name + "%'").addEntity(Recipe.class).list();
+		} catch(Exception e){
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+		}
+		return lr;
 	}
 
-
+	@SuppressWarnings("unchecked")
+	public List<Recipe> findRecipeByAutor(String username){
+		List<Recipe> lr = new ArrayList<Recipe>();
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		try {
+			t = session.beginTransaction();
+			lr = (List<Recipe>) session.createSQLQuery("SELECT {Recipe.*} FROM RECIPE {Recipe} WHERE AUTOR='" + username + "'")
+				    .addEntity("Recipe", Recipe.class).list();
+		} catch (Exception e){
+			e.printStackTrace();
+			lr = null;
+			t.rollback();
+		}
+		
+		session.close();
+		
+		return lr;
+		
+	}
 
 
 	
