@@ -38,17 +38,17 @@ public class HibernateUtil implements HibernateUtilInterface{
 	private SessionFactory 					sessionFactory; 
 	StandardServiceRegistryBuilder 			ssrb;
 	
-	private CityManagerInterface 			cityManager;
-	private ComposedOfManagerInterface 		composedOfManager;
-	private CountryManagerInterface 		countryManager;
-	private FavoriteRecipeManagerInterface	favoriteRecipeManager;
-	private FriendManagerInterface 			friendManager;
-	private IngredientManagerInterface 		ingredientManager;
-	private IngredientTypeManagerInterface 	ingredientTypeManager;
-	private RatingManagerInterface 			ratingManager;
-	private RecipeManagerInterface 			recipeManager;
-	private RegionManagerInterface 			regionManager;
-	private UserManagerInterface 			userManager;
+	private CityManager			cityManager;
+	private ComposedOfManager		composedOfManager;
+	private CountryManager 		countryManager;
+	private FavoriteRecipeManager	favoriteRecipeManager;
+	private FriendManager			friendManager;
+	private IngredientManager 		ingredientManager;
+	private IngredientTypeManager	ingredientTypeManager;
+	private RatingManager 			ratingManager;
+	private RecipeManager 			recipeManager;
+	private RegionManager			regionManager;
+	private UserManager 			userManager;
 	
 	
 	

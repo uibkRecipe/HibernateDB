@@ -40,7 +40,7 @@ public class IngredientManager extends PersistentManager implements IngredientMa
 	
 	@SuppressWarnings("unchecked")
 	public List<Ingredient> findIngredientsByIngredientType(int ingredientTypeID){
-		String query = "SELECT * FROM INGREDIENT WHERE INGREDIENTSTYPEID='" + ingredientTypeID + "'";
+		String query = "SELECT * FROM INGREDIENT WHERE INGREDIENTTYPEID='" + ingredientTypeID + "'";
 		Transaction t = null;
 		Session session = null;
 		List<Ingredient> l = new ArrayList<>();

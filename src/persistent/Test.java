@@ -1,5 +1,8 @@
 package persistent;
 
+import persistent.classes.IngredientType;
+import persistent.classes.RecipeIngredients;
+import persistent.help.CO2Calculation;
 import persistent.hibernateManager.HibernateUtil;
 
 
@@ -11,10 +14,10 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 	
-	
+		
 		HibernateUtil hm = HibernateUtil.getInstance();
 		
-		System.out.println(hm.findFavoriteRecipe("mirko"));
+		System.out.println(CO2Calculation.getInstance().calculateCO2(3, "mirko").getDistance());
 	
 		hm.closeSession();
 	}
