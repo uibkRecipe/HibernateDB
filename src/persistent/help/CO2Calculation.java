@@ -53,7 +53,7 @@ public class CO2Calculation {
 		if(u == null)
 			return null;
 		int cityID = u.getCity();
-		List<IngredientType> ingredientList = hu.getIngredients(recipeID);
+		List<IngredientType> ingredientList = hu.getIngredients(recipeID).getIngredients();
 		System.out.println(ingredientList);
 		double distance = 0.0;
 		for (IngredientType ingredientType : ingredientList) {

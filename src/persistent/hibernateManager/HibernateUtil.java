@@ -14,20 +14,10 @@ import persistent.classes.Ingredient;
 import persistent.classes.IngredientType;
 import persistent.classes.Rating;
 import persistent.classes.Recipe;
+import persistent.classes.RecipeIngredients;
 import persistent.classes.Region;
 import persistent.classes.User;
-import persistent.interfaces.CityManagerInterface;
-import persistent.interfaces.ComposedOfManagerInterface;
-import persistent.interfaces.CountryManagerInterface;
-import persistent.interfaces.FavoriteRecipeManagerInterface;
-import persistent.interfaces.FriendManagerInterface;
 import persistent.interfaces.HibernateUtilInterface;
-import persistent.interfaces.IngredientManagerInterface;
-import persistent.interfaces.IngredientTypeManagerInterface;
-import persistent.interfaces.RatingManagerInterface;
-import persistent.interfaces.RecipeManagerInterface;
-import persistent.interfaces.RegionManagerInterface;
-import persistent.interfaces.UserManagerInterface;
 /**
  * Fassade for hibernate
  * @author mirko
@@ -320,7 +310,7 @@ public class HibernateUtil implements HibernateUtilInterface{
 	 * 
 	 ***********************************************************/
 	@Override
-	public List<IngredientType> getIngredients(int recipeID) {
+	public RecipeIngredients getIngredients(int recipeID) {
 		return composedOfManager.getIngredients(recipeID);	
 	}
 	@Override
