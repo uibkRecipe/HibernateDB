@@ -1,5 +1,7 @@
 package persistent.interfaces;
 
+import java.util.List;
+
 import persistent.classes.City;
 
 
@@ -34,6 +36,5 @@ UserManagerInterface
 	public City getUserPosition(String username);
 	
 	
-
 	 
 }

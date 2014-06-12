@@ -18,11 +18,24 @@ public class Recipe  {
 	String category;
 	byte[] foto;
 	
+	double distance;
 	
 	
 	
 
 	
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public void setAverageRating(Float averageRating) {
+		this.averageRating = averageRating;
+	}
+
 	public Recipe(){
 		
 	}
