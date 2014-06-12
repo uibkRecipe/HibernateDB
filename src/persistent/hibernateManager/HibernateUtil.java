@@ -429,6 +429,18 @@ public class HibernateUtil implements HibernateUtilInterface{
 	}
 
 
+	@Override
+	public Region findRegionByCountryAndRegionName(String Code, String Name) {
+		return regionManager.findRegionByCountryAndRegionName(Code, Name);
+	}
+
+
+	@Override
+	public boolean addCooked(int recipeID) {
+		return recipeManager.addCooked(recipeID);
+	}
+
+
 
 
 

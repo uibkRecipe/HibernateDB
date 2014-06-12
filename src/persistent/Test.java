@@ -1,5 +1,6 @@
 package persistent;
 
+import persistent.classes.Ingredient;
 import persistent.classes.IngredientType;
 import persistent.classes.RecipeIngredients;
 import persistent.help.CO2Calculation;
@@ -16,8 +17,7 @@ public class Test {
 	
 		
 		HibernateUtil hm = HibernateUtil.getInstance();
-		
-		System.out.println(CO2Calculation.getInstance().calculateCO2(3, "mirko").getDistance());
+		hm.addCooked(3);
 	
 		hm.closeSession();
 	}

@@ -66,5 +66,7 @@ public class Ingredient {
 		this.brandName = brandName;
 	}
 	
-	
+	public String toString(){
+		return this.brandName + " " + this.ingredientTypeID;
+	}
 }

@@ -37,14 +37,16 @@ public class ComposedOfManager extends PersistentManager implements ComposedOfMa
 				
 			session.save(new ComposedOf(recipeID, ingredientID, quantity));
 				
+			if(t != null)
+				t.commit();
+			
 		} catch(Exception  e){
 			if(t != null)
 				t.rollback();
 			success = false;
 			e.printStackTrace();
 		}
-		if(t != null)
-			t.commit();
+		
 		return success;
 	}
 	

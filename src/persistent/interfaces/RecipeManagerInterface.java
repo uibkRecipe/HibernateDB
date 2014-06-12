@@ -66,4 +66,6 @@ public interface RecipeManagerInterface {
 	public List<Recipe> findRecipeByTime(int time);
 	public List<Recipe> findRecipeByName(String name);
 	public List<Recipe> findRecipeByTime(int mintime, int maxtime);
+	
+	public boolean addCooked(int recipeID);
 }

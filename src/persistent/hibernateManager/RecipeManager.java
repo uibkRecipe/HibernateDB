@@ -235,5 +235,35 @@ public class RecipeManager extends PersistentManager implements RecipeManagerInt
 	}
 
 
+
+
+
+
+
+
+	@Override
+	public boolean addCooked(int recipeID) {
+		boolean success = true;
+		Session s = null;
+		Transaction t = null;
+		try {
+			Recipe r = findRecipeById(recipeID);
+			s = sessionFactory.openSession();
+			t = s.beginTransaction();
+			int cooked = r.getCooked();
+			r.setCooked(cooked+1);
+			s.saveOrUpdate(r);
+			if(t != null)
+				t.commit();
+		} catch(Exception e) {
+			if(t != null)
+				t.rollback();
+			e.printStackTrace();
+			success = false;
+		}
+		return success;
+	}
+
+
 	
 }
