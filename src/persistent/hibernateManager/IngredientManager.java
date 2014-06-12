@@ -26,14 +26,14 @@ public class IngredientManager extends PersistentManager implements IngredientMa
 			
 			transaction = session.beginTransaction();
 			session.save(ingredient);
-			
+			transaction.commit();
 		} catch(Exception e){
 			if(transaction != null)
 				transaction.rollback();
 			e.printStackTrace();
 			success = false;
 		}
-		transaction.commit();
+		
 		
 		return success;
 	}
