@@ -71,13 +71,14 @@ public class FriendManager extends PersistentManager implements FriendManagerInt
 		try {
 			t = session.beginTransaction();
 			session.delete(new Friend(username1, username2));
+			t.commit();
+
 			
 		} catch(Exception e){
 			if(t != null)
 				t.rollback();
 			e.printStackTrace();
 		} 
-		t.commit();
 		return ret;
 		
 	}
