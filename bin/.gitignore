@@ -2,4 +2,5 @@
 /ComposedOf.hbm.xml
 /Country.hbm.xml
 /FavoriteRecipe.hbm.xml
+/Friend.hbm.xml
 /persistent/
